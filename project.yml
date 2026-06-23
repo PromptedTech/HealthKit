@@ -1,0 +1,50 @@
+name: AbsCountdown
+options:
+  bundleIdPrefix: com.nakul
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "2C5U29B7X5"
+
+targets:
+  AbsCountdown:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/App
+      - path: Sources/Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nakul.abscountdown
+        INFOPLIST_FILE: Sources/App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/App/AbsCountdown.entitlements
+        GENERATE_INFOPLIST_FILE: "NO"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_PREVIEWS: "YES"
+    dependencies:
+      - target: AbsCountdownWidget
+        embed: true
+
+  AbsCountdownWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/Widget
+      - path: Sources/Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nakul.abscountdown.widget
+        INFOPLIST_FILE: Sources/Widget/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/Widget/AbsCountdownWidget.entitlements
+        GENERATE_INFOPLIST_FILE: "NO"
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_PREVIEWS: "YES"

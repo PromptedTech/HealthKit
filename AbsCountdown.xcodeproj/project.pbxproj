@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02BE53B7C9CAAA7C7D668EA8 /* CountdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70419CEAB73E64ADDA010C6 /* CountdownViewModel.swift */; };
+		0413D5B0B405100CE7F29767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B5AE6DE230E34DA8A24F1C /* Assets.xcassets */; };
+		0AB1CEABDB836B7E0E1F5464 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */; };
+		13DE4EE452661062EC18468B /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */; };
+		14C5C11EF3C4554AA686FCDF /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1260EB965C190308D2AA63 /* ConfettiView.swift */; };
+		19531997B492EA6DA171A9ED /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */; };
+		3A7277954C6761D42D2B0E4E /* RingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA638D45EFB666D02672229 /* RingData.swift */; };
+		3F19E04C7A785C0DF2D8AC14 /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */; };
+		4BC508F53567063E6FB8C64F /* AbsCountdownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */; };
+		52A86B7BA2F685454250D7CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E64EC777E985D29F9D8FC /* ContentView.swift */; };
+		5A102F6B7FB6D58302B98662 /* AbsCountdownWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */; };
+		60498EC6F1FCAAB7E2BC908E /* AbsCountdownWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6889A2C5E3F542D00D605D84 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */; };
+		7388C86C97409270B288797D /* NutritionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96935AC6F952AE672D146EC /* NutritionScreen.swift */; };
+		7815140BDA283C79B5BB4344 /* MascotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40939866C0829A82470DAD7F /* MascotView.swift */; };
+		8DCA8BB57DB091A8791E729B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */; };
+		941DE1F1E6FEC81FFDAFA981 /* AbsCountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24E58291048A43FC16619F /* AbsCountdownApp.swift */; };
+		9A5005DE029B3060FB5AF964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EA488E86B71947F42698E0C /* Assets.xcassets */; };
+		9E94603D46007C4223D78870 /* FoodLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF1F74B8A405AB2118B8573 /* FoodLibrary.swift */; };
+		9F4AF427DCD48203A7550F26 /* NutritionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971DB4BE9957E0472532BDC /* NutritionStore.swift */; };
+		ABBB73450AF745AB1A48E12E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450AB40F567D114D8EB210E0 /* SettingsView.swift */; };
+		AE56A088B8DBFE2CAE0D2E88 /* RingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA638D45EFB666D02672229 /* RingData.swift */; };
+		AF66D67778A54EC956BFBB7E /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */; };
+		BF404150E9EC44AD7DD4F580 /* EvaluationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B8366C32C9BBE59A1284A /* EvaluationEngine.swift */; };
+		C1240123337867B912EFBF46 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6EE2E816E7516EB43D8526 /* HealthKitManager.swift */; };
+		F21EEF9E3838F9B371E09A29 /* NutritionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4068E0083F27979E426CB774 /* NutritionViewModel.swift */; };
+		F9596A1D1ABAACEB243E5870 /* NutritionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971DB4BE9957E0472532BDC /* NutritionStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		126478F0EF62E8CEB67CF242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B3FEBF7A22701BC534AA82E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E72022FB9BCD37A452806F4;
+			remoteInfo = AbsCountdownWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D87EA4463DB65DF0ECED2122 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				60498EC6F1FCAAB7E2BC908E /* AbsCountdownWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		296B8366C32C9BBE59A1284A /* EvaluationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationEngine.swift; sourceTree = "<group>"; };
+		3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownWidget.swift; sourceTree = "<group>"; };
+		4068E0083F27979E426CB774 /* NutritionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionViewModel.swift; sourceTree = "<group>"; };
+		40939866C0829A82470DAD7F /* MascotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MascotView.swift; sourceTree = "<group>"; };
+		450AB40F567D114D8EB210E0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4696B10AEE3BB70BBAD0119B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4EA638D45EFB666D02672229 /* RingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingData.swift; sourceTree = "<group>"; };
+		51B5AE6DE230E34DA8A24F1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		6AF1F74B8A405AB2118B8573 /* FoodLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLibrary.swift; sourceTree = "<group>"; };
+		6D24E58291048A43FC16619F /* AbsCountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownApp.swift; sourceTree = "<group>"; };
+		7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStore.swift; sourceTree = "<group>"; };
+		786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AbsCountdownWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D6EE2E816E7516EB43D8526 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		7EA0CE6490A414898E735D0C /* AbsCountdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AbsCountdown.entitlements; sourceTree = "<group>"; };
+		7EA488E86B71947F42698E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		95D714AB6D674B6021BC964A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9971DB4BE9957E0472532BDC /* NutritionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionStore.swift; sourceTree = "<group>"; };
+		B444EDDA8FFAD452FAC59DE3 /* AbsCountdown.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AbsCountdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownWidgetBundle.swift; sourceTree = "<group>"; };
+		B96935AC6F952AE672D146EC /* NutritionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionScreen.swift; sourceTree = "<group>"; };
+		C07322315572E206692CA473 /* AbsCountdownWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AbsCountdownWidget.entitlements; sourceTree = "<group>"; };
+		DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
+		E70419CEAB73E64ADDA010C6 /* CountdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewModel.swift; sourceTree = "<group>"; };
+		ED1260EB965C190308D2AA63 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		FA0E64EC777E985D29F9D8FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		55753921C2C5B003424003FC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7EA0CE6490A414898E735D0C /* AbsCountdown.entitlements */,
+				6D24E58291048A43FC16619F /* AbsCountdownApp.swift */,
+				7EA488E86B71947F42698E0C /* Assets.xcassets */,
+				ED1260EB965C190308D2AA63 /* ConfettiView.swift */,
+				FA0E64EC777E985D29F9D8FC /* ContentView.swift */,
+				E70419CEAB73E64ADDA010C6 /* CountdownViewModel.swift */,
+				296B8366C32C9BBE59A1284A /* EvaluationEngine.swift */,
+				6AF1F74B8A405AB2118B8573 /* FoodLibrary.swift */,
+				7D6EE2E816E7516EB43D8526 /* HealthKitManager.swift */,
+				4696B10AEE3BB70BBAD0119B /* Info.plist */,
+				40939866C0829A82470DAD7F /* MascotView.swift */,
+				DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */,
+				B96935AC6F952AE672D146EC /* NutritionScreen.swift */,
+				4068E0083F27979E426CB774 /* NutritionViewModel.swift */,
+				450AB40F567D114D8EB210E0 /* SettingsView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5844FEE6819B2B57256830C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B444EDDA8FFAD452FAC59DE3 /* AbsCountdown.app */,
+				786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6415155D79920F00D51E7028 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */,
+				7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */,
+				9971DB4BE9957E0472532BDC /* NutritionStore.swift */,
+				62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */,
+				4EA638D45EFB666D02672229 /* RingData.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AEE94C5D56C6D2E3CF5483CA = {
+			isa = PBXGroup;
+			children = (
+				E6339E509BE806C4420A1814 /* Sources */,
+				5844FEE6819B2B57256830C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D1DE14594A068C46B0964256 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				C07322315572E206692CA473 /* AbsCountdownWidget.entitlements */,
+				3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */,
+				B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */,
+				51B5AE6DE230E34DA8A24F1C /* Assets.xcassets */,
+				95D714AB6D674B6021BC964A /* Info.plist */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		E6339E509BE806C4420A1814 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				55753921C2C5B003424003FC /* App */,
+				6415155D79920F00D51E7028 /* Shared */,
+				D1DE14594A068C46B0964256 /* Widget */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D22632A0829F79896E7259A /* AbsCountdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CFA91AFE1C485DEF5528519 /* Build configuration list for PBXNativeTarget "AbsCountdown" */;
+			buildPhases = (
+				4397C278B350A7C2CC7A48A9 /* Sources */,
+				DE6C40BF24524A3B5253DC3A /* Resources */,
+				D87EA4463DB65DF0ECED2122 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50AC6FA034BD39F98FFA8D14 /* PBXTargetDependency */,
+			);
+			name = AbsCountdown;
+			packageProductDependencies = (
+			);
+			productName = AbsCountdown;
+			productReference = B444EDDA8FFAD452FAC59DE3 /* AbsCountdown.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E72022FB9BCD37A452806F4 /* AbsCountdownWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4874483121AA93AA873C7D71 /* Build configuration list for PBXNativeTarget "AbsCountdownWidget" */;
+			buildPhases = (
+				BD4A5B0C7528E8F78B12C1BE /* Sources */,
+				AE4DFB8EE9F1885B39137D46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AbsCountdownWidget;
+			packageProductDependencies = (
+			);
+			productName = AbsCountdownWidget;
+			productReference = 786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0B3FEBF7A22701BC534AA82E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1D22632A0829F79896E7259A = {
+						DevelopmentTeam = 2C5U29B7X5;
+						ProvisioningStyle = Automatic;
+					};
+					4E72022FB9BCD37A452806F4 = {
+						DevelopmentTeam = 2C5U29B7X5;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A4CC9CFAB41C260A9D92344E /* Build configuration list for PBXProject "AbsCountdown" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = AEE94C5D56C6D2E3CF5483CA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5844FEE6819B2B57256830C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D22632A0829F79896E7259A /* AbsCountdown */,
+				4E72022FB9BCD37A452806F4 /* AbsCountdownWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE4DFB8EE9F1885B39137D46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0413D5B0B405100CE7F29767 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE6C40BF24524A3B5253DC3A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A5005DE029B3060FB5AF964 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4397C278B350A7C2CC7A48A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941DE1F1E6FEC81FFDAFA981 /* AbsCountdownApp.swift in Sources */,
+				6889A2C5E3F542D00D605D84 /* ActivityRingsView.swift in Sources */,
+				14C5C11EF3C4554AA686FCDF /* ConfettiView.swift in Sources */,
+				52A86B7BA2F685454250D7CD /* ContentView.swift in Sources */,
+				3F19E04C7A785C0DF2D8AC14 /* CountdownStore.swift in Sources */,
+				02BE53B7C9CAAA7C7D668EA8 /* CountdownViewModel.swift in Sources */,
+				BF404150E9EC44AD7DD4F580 /* EvaluationEngine.swift in Sources */,
+				9E94603D46007C4223D78870 /* FoodLibrary.swift in Sources */,
+				C1240123337867B912EFBF46 /* HealthKitManager.swift in Sources */,
+				7815140BDA283C79B5BB4344 /* MascotView.swift in Sources */,
+				8DCA8BB57DB091A8791E729B /* NotificationManager.swift in Sources */,
+				7388C86C97409270B288797D /* NutritionScreen.swift in Sources */,
+				F9596A1D1ABAACEB243E5870 /* NutritionStore.swift in Sources */,
+				F21EEF9E3838F9B371E09A29 /* NutritionViewModel.swift in Sources */,
+				0AB1CEABDB836B7E0E1F5464 /* Quotes.swift in Sources */,
+				3A7277954C6761D42D2B0E4E /* RingData.swift in Sources */,
+				ABBB73450AF745AB1A48E12E /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD4A5B0C7528E8F78B12C1BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC508F53567063E6FB8C64F /* AbsCountdownWidget.swift in Sources */,
+				5A102F6B7FB6D58302B98662 /* AbsCountdownWidgetBundle.swift in Sources */,
+				13DE4EE452661062EC18468B /* ActivityRingsView.swift in Sources */,
+				AF66D67778A54EC956BFBB7E /* CountdownStore.swift in Sources */,
+				9F4AF427DCD48203A7550F26 /* NutritionStore.swift in Sources */,
+				19531997B492EA6DA171A9ED /* Quotes.swift in Sources */,
+				AE56A088B8DBFE2CAE0D2E88 /* RingData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		50AC6FA034BD39F98FFA8D14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E72022FB9BCD37A452806F4 /* AbsCountdownWidget */;
+			targetProxy = 126478F0EF62E8CEB67CF242 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B06DB9E566DF05E1B7061E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/AbsCountdown.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		88F12E9F5636BE79B2B60919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2C5U29B7X5;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8A468CD803EDBB43D9F8AFB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/AbsCountdownWidget.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		98FD7391D3E009C29B14E392 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/AbsCountdown.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9EA95A8ADC7A2239B1E1D4BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/AbsCountdownWidget.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A3B46FCFCEA2699DAC57D5FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2C5U29B7X5;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4874483121AA93AA873C7D71 /* Build configuration list for PBXNativeTarget "AbsCountdownWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EA95A8ADC7A2239B1E1D4BE /* Debug */,
+				8A468CD803EDBB43D9F8AFB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8CFA91AFE1C485DEF5528519 /* Build configuration list for PBXNativeTarget "AbsCountdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98FD7391D3E009C29B14E392 /* Debug */,
+				2B06DB9E566DF05E1B7061E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4CC9CFAB41C260A9D92344E /* Build configuration list for PBXProject "AbsCountdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F12E9F5636BE79B2B60919 /* Debug */,
+				A3B46FCFCEA2699DAC57D5FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0B3FEBF7A22701BC534AA82E /* Project object */;
+}
