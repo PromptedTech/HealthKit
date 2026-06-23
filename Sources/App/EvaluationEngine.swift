@@ -66,6 +66,23 @@ final class EvaluationEngine {
             exerciseAvg: workoutAvg.exercise
         )
 
+        // Refresh the cached Abs ETA so the chip on CountdownScreen stays current.
+        // This is a best-effort read — we don't block on it if HealthKit is slow.
+        Task {
+            let weightSeries = await health.bodyMassSeries(days: 90)
+            let fatSeries    = await health.bodyFatSeries(days: 90)
+            let isMale       = NutritionStore.sex == .male
+            let eta = AbsEstimator.estimate(
+                bodyFatSeries: fatSeries,
+                weightSeries: weightSeries,
+                targetBodyFat: ProgressStore.targetBodyFat,
+                heightCm: NutritionStore.heightCm,
+                age: NutritionStore.age,
+                isMale: isMale
+            )
+            ProgressStore.cacheETA(eta)
+        }
+
         WidgetCenter.shared.reloadAllTimelines()
     }
 }

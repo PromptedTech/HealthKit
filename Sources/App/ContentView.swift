@@ -13,6 +13,10 @@ struct ContentView: View {
             NutritionScreen()
                 .tabItem { Label("Nutrition", systemImage: "fork.knife") }
                 .tag(1)
+
+            ProgressScreen()
+                .tabItem { Label("Progress", systemImage: "chart.line.uptrend.xyaxis") }
+                .tag(2)
         }
         .tint(.mint)
         .preferredColorScheme(.dark)
@@ -25,6 +29,9 @@ struct CountdownScreen: View {
 
     @StateObject private var model = CountdownViewModel()
     @StateObject private var nutrition = NutritionViewModel()
+    @State private var etaState: String = ProgressStore.cachedETAState
+    @State private var etaDate: Date? = ProgressStore.cachedETADate
+    @State private var etaWeeks: Double = ProgressStore.cachedETAWeeks
     @State private var showSettings = false
     @State private var hasCelebrated = false
     @State private var pulse = false
@@ -38,6 +45,7 @@ struct CountdownScreen: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         nutritionAveragesStrip
+                        absETAChip
                         countdownHero
                         activityCard
                         weeklyWorkoutCard
@@ -121,6 +129,69 @@ struct CountdownScreen: View {
             .background(cardBackground)
         }
         .buttonStyle(PressableStyle())
+    }
+
+    // MARK: - Abs ETA chip (reads cached value — no HealthKit query needed here)
+
+    private var absETAChip: some View {
+        Button { selectedTab = 2 } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "chart.line.uptrend.xyaxis")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.orange)
+                    .frame(width: 30, height: 30)
+                    .background(Circle().fill(.orange.opacity(0.15)))
+
+                Group {
+                    switch etaState {
+                    case "onTrack":
+                        HStack(spacing: 6) {
+                            if let d = etaDate {
+                                let fmt: DateFormatter = {
+                                    let f = DateFormatter(); f.dateFormat = "MMM d"; return f
+                                }()
+                                Text("Abs by \(fmt.string(from: d))")
+                                    .font(.subheadline.weight(.bold))
+                                    .foregroundStyle(.white)
+                                Text("· \(Int(etaWeeks.rounded()))w away")
+                                    .font(.caption2)
+                                    .foregroundStyle(.white.opacity(0.5))
+                            } else {
+                                Text("On track")
+                                    .font(.subheadline.weight(.bold))
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                    case "alreadyThere":
+                        Text("You've hit your body-fat target 🎉")
+                            .font(.subheadline.weight(.bold))
+                            .foregroundStyle(.mint)
+                    case "notLosingYet":
+                        Text("Not in a deficit yet — check Progress →")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(.orange.opacity(0.9))
+                    default:
+                        Text("Log weight to project Abs ETA →")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.25))
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(cardBackground)
+        }
+        .buttonStyle(PressableStyle())
+        .onAppear {
+            etaState = ProgressStore.cachedETAState
+            etaDate  = ProgressStore.cachedETADate
+            etaWeeks = ProgressStore.cachedETAWeeks
+        }
     }
 
     // MARK: - Weekly workout average
