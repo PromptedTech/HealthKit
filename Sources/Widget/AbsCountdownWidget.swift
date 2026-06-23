@@ -51,6 +51,12 @@ struct AbsCountdownWidgetEntryView: View {
         switch family {
         case .systemMedium:
             mediumBody
+        case .accessoryCircular:
+            circularBody
+        case .accessoryRectangular:
+            rectangularBody
+        case .accessoryInline:
+            inlineBody
         default:
             smallBody
         }
@@ -152,6 +158,81 @@ struct AbsCountdownWidgetEntryView: View {
         .widgetURL(URL(string: "abscountdown://open"))
     }
 
+    // MARK: Lock Screen — circular (shows on iPhone Lock Screen + Apple Watch face)
+
+    private var circularBody: some View {
+        ZStack {
+            ProgressView(value: entry.progress)
+                .progressViewStyle(.circular)
+                .tint(.mint)
+            VStack(spacing: 0) {
+                Text("\(entry.count)")
+                    .font(.system(size: 18, weight: .heavy, design: .rounded))
+                    .foregroundStyle(.white)
+                    .minimumScaleFactor(0.7)
+                Text("days")
+                    .font(.system(size: 7, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.5))
+            }
+        }
+        .containerBackground(for: .widget) { Color.black }
+    }
+
+    // MARK: Lock Screen — rectangular (wider banner)
+
+    private var rectangularBody: some View {
+        HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text("\(entry.count)")
+                        .font(.system(size: 20, weight: .heavy, design: .rounded))
+                        .foregroundStyle(.white)
+                    Text("days to go")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.white.opacity(0.5))
+                }
+                HStack(spacing: 8) {
+                    ringMiniStat(
+                        value: Int(entry.ring.moveCurrent),
+                        goal: entry.ring.moveGoal,
+                        unit: "CAL",
+                        color: ActivityRingsView.moveColors[0]
+                    )
+                    ringMiniStat(
+                        value: Int(entry.ring.exerciseCurrent),
+                        goal: entry.ring.exerciseGoal,
+                        unit: "MIN",
+                        color: ActivityRingsView.exerciseColors[0]
+                    )
+                }
+            }
+            Spacer(minLength: 4)
+            ActivityRingsView(ring: entry.ring, lineWidth: 5, spacing: 2)
+                .frame(width: 40, height: 40)
+        }
+        .containerBackground(for: .widget) { Color.black }
+    }
+
+    private func ringMiniStat(value: Int, goal: Double, unit: String, color: Color) -> some View {
+        HStack(spacing: 2) {
+            Circle().fill(color).frame(width: 5, height: 5)
+            Text(goal > 0 ? "\(value)/\(Int(goal))" : "--")
+                .font(.system(size: 9, weight: .semibold))
+                .foregroundStyle(color)
+            Text(unit)
+                .font(.system(size: 8))
+                .foregroundStyle(.white.opacity(0.4))
+        }
+    }
+
+    // MARK: Lock Screen — inline (single line)
+
+    private var inlineBody: some View {
+        Text(entry.ring.bothClosed ? "✓ \(entry.count) days — rings closed!" : "\(entry.count) days · Close your rings")
+            .font(.caption.weight(.semibold))
+            .containerBackground(for: .widget) { Color.clear }
+    }
+
     private func metricRow(_ title: String, _ value: Int, _ goal: Double, _ unit: String, _ colors: [Color]) -> some View {
         HStack(spacing: 6) {
             Circle().fill(colors[0]).frame(width: 8, height: 8)
@@ -187,7 +268,7 @@ struct AbsCountdownWidget: Widget {
         }
         .configurationDisplayName("Abs Countdown")
         .description("Days until abs, plus today's activity rings.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
 

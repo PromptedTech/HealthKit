@@ -45,6 +45,10 @@
 	<string>AbsCountdown uses the camera to capture progress photos stored privately on your device.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>AbsCountdown uses Face ID to protect your private progress photos and body stats.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>NSSupportsLiveActivitiesFrequentUpdates</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

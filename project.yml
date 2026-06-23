@@ -33,6 +33,26 @@ targets:
     dependencies:
       - target: AbsCountdownWidget
         embed: true
+      - target: AbsCountdownWatch
+        embed: true
+
+  AbsCountdownWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "9.0"
+    sources:
+      - path: Sources/Watch
+      - path: Sources/Shared
+        excludes:
+          - ProgressStore.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nakul.abscountdown.watchkitapp
+        INFOPLIST_FILE: Sources/Watch/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/Watch/AbsCountdownWatch.entitlements
+        GENERATE_INFOPLIST_FILE: "NO"
+        TARGETED_DEVICE_FAMILY: "4"
+        ENABLE_PREVIEWS: "YES"
 
   AbsCountdownWidget:
     type: app-extension

@@ -5,5 +5,6 @@ import SwiftUI
 struct AbsCountdownWidgetBundle: WidgetBundle {
     var body: some Widget {
         AbsCountdownWidget()
+        AbsLiveActivityWidget()
     }
 }

@@ -25,6 +25,7 @@ struct AbsCountdownApp: App {
             switch newPhase {
             case .active:
                 // Belt-and-suspenders: always reconcile whenever the app comes forward.
+                // EvaluationEngine.runCatchUp() will start/update/end the Live Activity.
                 Task { await EvaluationEngine.shared.runCatchUp() }
             case .background:
                 Self.scheduleBackgroundTask()

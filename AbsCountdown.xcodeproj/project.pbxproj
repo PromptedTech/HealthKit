@@ -9,27 +9,39 @@
 /* Begin PBXBuildFile section */
 		02BE53B7C9CAAA7C7D668EA8 /* CountdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70419CEAB73E64ADDA010C6 /* CountdownViewModel.swift */; };
 		0413D5B0B405100CE7F29767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B5AE6DE230E34DA8A24F1C /* Assets.xcassets */; };
+		063E144F006F2B276B42AB91 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */; };
 		0AB1CEABDB836B7E0E1F5464 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */; };
 		13DE4EE452661062EC18468B /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */; };
 		14C5C11EF3C4554AA686FCDF /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1260EB965C190308D2AA63 /* ConfettiView.swift */; };
+		15EA2AFEF483DA2C9297CD89 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAE8D97CD4D0B443DD45AB /* LiveActivityManager.swift */; };
 		19531997B492EA6DA171A9ED /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */; };
 		20E84245B5DBFDD1AA288782 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042FF1769244B3684CB53BB /* ProgressStore.swift */; };
+		25CA07436B40E4C2B62EA614 /* AbsCountdownWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 17D239323DD7E96E19CE9280 /* AbsCountdownWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32034A2CEE41DDF484DC5D08 /* AbsCountdownWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE53ACACD4D13307863B2CD /* AbsCountdownWatchApp.swift */; };
+		33FB04DD7C9485C2ED05BA49 /* AbsEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E16A05B250690AC7393EDA /* AbsEstimator.swift */; };
 		3A7277954C6761D42D2B0E4E /* RingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA638D45EFB666D02672229 /* RingData.swift */; };
 		3F19E04C7A785C0DF2D8AC14 /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */; };
 		4BC508F53567063E6FB8C64F /* AbsCountdownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */; };
+		526D9ED74C301E6E3DC6EDF4 /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */; };
 		52A86B7BA2F685454250D7CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E64EC777E985D29F9D8FC /* ContentView.swift */; };
+		5490AA07F2B51ADB8F75D59F /* NutritionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971DB4BE9957E0472532BDC /* NutritionStore.swift */; };
 		5A102F6B7FB6D58302B98662 /* AbsCountdownWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */; };
 		60498EC6F1FCAAB7E2BC908E /* AbsCountdownWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		658A132FE69510F93F40B11F /* RingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA638D45EFB666D02672229 /* RingData.swift */; };
 		6889A2C5E3F542D00D605D84 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */; };
 		6AE9354FABBC23BAA57A4619 /* AbsEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E16A05B250690AC7393EDA /* AbsEstimator.swift */; };
 		6C97FEB2C5B373ED5A62FB24 /* ProgressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249EADCAFC60951604E34B3 /* ProgressScreen.swift */; };
 		7388C86C97409270B288797D /* NutritionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96935AC6F952AE672D146EC /* NutritionScreen.swift */; };
 		7815140BDA283C79B5BB4344 /* MascotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40939866C0829A82470DAD7F /* MascotView.swift */; };
+		7ACBE68AE3884315931D4F42 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90136BEAE0EB765062F651 /* WatchContentView.swift */; };
 		8DCA8BB57DB091A8791E729B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */; };
+		9295ECB49DB2DD80927A553B /* AbsActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6245F68D67E9430723A70 /* AbsActivityAttributes.swift */; };
+		92BCB605007E1742CB793A47 /* AbsActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6245F68D67E9430723A70 /* AbsActivityAttributes.swift */; };
 		941DE1F1E6FEC81FFDAFA981 /* AbsCountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24E58291048A43FC16619F /* AbsCountdownApp.swift */; };
 		9A5005DE029B3060FB5AF964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EA488E86B71947F42698E0C /* Assets.xcassets */; };
 		9E94603D46007C4223D78870 /* FoodLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF1F74B8A405AB2118B8573 /* FoodLibrary.swift */; };
 		9F4AF427DCD48203A7550F26 /* NutritionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971DB4BE9957E0472532BDC /* NutritionStore.swift */; };
+		A4E716EFE5B1CDCBF55312CA /* AbsLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4475F7FB4CE9CAA660437F /* AbsLiveActivityWidget.swift */; };
 		ABBB73450AF745AB1A48E12E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450AB40F567D114D8EB210E0 /* SettingsView.swift */; };
 		AE56A088B8DBFE2CAE0D2E88 /* RingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA638D45EFB666D02672229 /* RingData.swift */; };
 		AF66D67778A54EC956BFBB7E /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */; };
@@ -38,8 +50,10 @@
 		C1240123337867B912EFBF46 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6EE2E816E7516EB43D8526 /* HealthKitManager.swift */; };
 		E15A102D1E35A73CA52733E3 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042FF1769244B3684CB53BB /* ProgressStore.swift */; };
 		E985DBB3B649A61B4D922030 /* AbsEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E16A05B250690AC7393EDA /* AbsEstimator.swift */; };
+		F1BFBE7256278048EEC358C3 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D85C3CBBF8C1F48EC4A8CA /* Quotes.swift */; };
 		F21EEF9E3838F9B371E09A29 /* NutritionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4068E0083F27979E426CB774 /* NutritionViewModel.swift */; };
 		F9596A1D1ABAACEB243E5870 /* NutritionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971DB4BE9957E0472532BDC /* NutritionStore.swift */; };
+		FF3823563E5E74D03F208031 /* AbsActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6245F68D67E9430723A70 /* AbsActivityAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +64,27 @@
 			remoteGlobalIDString = 4E72022FB9BCD37A452806F4;
 			remoteInfo = AbsCountdownWidget;
 		};
+		A7DE34B78D60F85B131B3416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B3FEBF7A22701BC534AA82E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CA51C6D149A4AB34934CD45;
+			remoteInfo = AbsCountdownWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3A8DC6802D13444B049895E3 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				25CA07436B40E4C2B62EA614 /* AbsCountdownWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D87EA4463DB65DF0ECED2122 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,6 +100,9 @@
 
 /* Begin PBXFileReference section */
 		023BFF7F644DE6F7F0155A30 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		0CE53ACACD4D13307863B2CD /* AbsCountdownWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownWatchApp.swift; sourceTree = "<group>"; };
+		0F4475F7FB4CE9CAA660437F /* AbsLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsLiveActivityWidget.swift; sourceTree = "<group>"; };
+		17D239323DD7E96E19CE9280 /* AbsCountdownWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbsCountdownWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		296B8366C32C9BBE59A1284A /* EvaluationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationEngine.swift; sourceTree = "<group>"; };
 		3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownWidget.swift; sourceTree = "<group>"; };
 		4068E0083F27979E426CB774 /* NutritionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionViewModel.swift; sourceTree = "<group>"; };
@@ -91,16 +126,32 @@
 		B444EDDA8FFAD452FAC59DE3 /* AbsCountdown.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AbsCountdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsCountdownWidgetBundle.swift; sourceTree = "<group>"; };
 		B96935AC6F952AE672D146EC /* NutritionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionScreen.swift; sourceTree = "<group>"; };
+		BCD4122BD4E529D08A70E5B2 /* AbsCountdownWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AbsCountdownWatch.entitlements; sourceTree = "<group>"; };
+		BE90136BEAE0EB765062F651 /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
 		C07322315572E206692CA473 /* AbsCountdownWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AbsCountdownWidget.entitlements; sourceTree = "<group>"; };
 		DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
 		E249EADCAFC60951604E34B3 /* ProgressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressScreen.swift; sourceTree = "<group>"; };
 		E70419CEAB73E64ADDA010C6 /* CountdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewModel.swift; sourceTree = "<group>"; };
+		E9A6245F68D67E9430723A70 /* AbsActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsActivityAttributes.swift; sourceTree = "<group>"; };
+		ECB46C67D0A29AEA10ECC0D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ED1260EB965C190308D2AA63 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		F0DAE8D97CD4D0B443DD45AB /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		FA0E64EC777E985D29F9D8FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		44AC6D76B67EDAA2DFE12650 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				BCD4122BD4E529D08A70E5B2 /* AbsCountdownWatch.entitlements */,
+				0CE53ACACD4D13307863B2CD /* AbsCountdownWatchApp.swift */,
+				ECB46C67D0A29AEA10ECC0D4 /* Info.plist */,
+				BE90136BEAE0EB765062F651 /* WatchContentView.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
 		55753921C2C5B003424003FC /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +165,7 @@
 				6AF1F74B8A405AB2118B8573 /* FoodLibrary.swift */,
 				7D6EE2E816E7516EB43D8526 /* HealthKitManager.swift */,
 				4696B10AEE3BB70BBAD0119B /* Info.plist */,
+				F0DAE8D97CD4D0B443DD45AB /* LiveActivityManager.swift */,
 				40939866C0829A82470DAD7F /* MascotView.swift */,
 				DF241BEBC55C9F340E7CCB70 /* NotificationManager.swift */,
 				B96935AC6F952AE672D146EC /* NutritionScreen.swift */,
@@ -129,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B444EDDA8FFAD452FAC59DE3 /* AbsCountdown.app */,
+				17D239323DD7E96E19CE9280 /* AbsCountdownWatch.app */,
 				786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */,
 			);
 			name = Products;
@@ -137,6 +190,7 @@
 		6415155D79920F00D51E7028 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E9A6245F68D67E9430723A70 /* AbsActivityAttributes.swift */,
 				A7E16A05B250690AC7393EDA /* AbsEstimator.swift */,
 				E1D1CFE1E3EC80A4633DA14B /* ActivityRingsView.swift */,
 				7031F6CCA6E504F5EBD87FDB /* CountdownStore.swift */,
@@ -162,6 +216,7 @@
 				C07322315572E206692CA473 /* AbsCountdownWidget.entitlements */,
 				3A7E4A0FC71F8782A15A9F9C /* AbsCountdownWidget.swift */,
 				B6BD126AE4A2C34B033B990C /* AbsCountdownWidgetBundle.swift */,
+				0F4475F7FB4CE9CAA660437F /* AbsLiveActivityWidget.swift */,
 				51B5AE6DE230E34DA8A24F1C /* Assets.xcassets */,
 				95D714AB6D674B6021BC964A /* Info.plist */,
 			);
@@ -173,6 +228,7 @@
 			children = (
 				55753921C2C5B003424003FC /* App */,
 				6415155D79920F00D51E7028 /* Shared */,
+				44AC6D76B67EDAA2DFE12650 /* Watch */,
 				D1DE14594A068C46B0964256 /* Widget */,
 			);
 			path = Sources;
@@ -188,11 +244,13 @@
 				4397C278B350A7C2CC7A48A9 /* Sources */,
 				DE6C40BF24524A3B5253DC3A /* Resources */,
 				D87EA4463DB65DF0ECED2122 /* Embed Foundation Extensions */,
+				3A8DC6802D13444B049895E3 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				50AC6FA034BD39F98FFA8D14 /* PBXTargetDependency */,
+				843EC6A2562524FA7AE42BBA /* PBXTargetDependency */,
 			);
 			name = AbsCountdown;
 			packageProductDependencies = (
@@ -219,6 +277,23 @@
 			productReference = 786FF59E5E6E9A10CF849C08 /* AbsCountdownWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		6CA51C6D149A4AB34934CD45 /* AbsCountdownWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13AD7C429BCBA32E6830B1C7 /* Build configuration list for PBXNativeTarget "AbsCountdownWatch" */;
+			buildPhases = (
+				C06C64D33E7C9DF3C93C693D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AbsCountdownWatch;
+			packageProductDependencies = (
+			);
+			productName = AbsCountdownWatch;
+			productReference = 17D239323DD7E96E19CE9280 /* AbsCountdownWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,6 +308,10 @@
 						ProvisioningStyle = Automatic;
 					};
 					4E72022FB9BCD37A452806F4 = {
+						DevelopmentTeam = 2C5U29B7X5;
+						ProvisioningStyle = Automatic;
+					};
+					6CA51C6D149A4AB34934CD45 = {
 						DevelopmentTeam = 2C5U29B7X5;
 						ProvisioningStyle = Automatic;
 					};
@@ -253,6 +332,7 @@
 			projectRoot = "";
 			targets = (
 				1D22632A0829F79896E7259A /* AbsCountdown */,
+				6CA51C6D149A4AB34934CD45 /* AbsCountdownWatch */,
 				4E72022FB9BCD37A452806F4 /* AbsCountdownWidget */,
 			);
 		};
@@ -282,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BCB605007E1742CB793A47 /* AbsActivityAttributes.swift in Sources */,
 				941DE1F1E6FEC81FFDAFA981 /* AbsCountdownApp.swift in Sources */,
 				E985DBB3B649A61B4D922030 /* AbsEstimator.swift in Sources */,
 				6889A2C5E3F542D00D605D84 /* ActivityRingsView.swift in Sources */,
@@ -292,6 +373,7 @@
 				BF404150E9EC44AD7DD4F580 /* EvaluationEngine.swift in Sources */,
 				9E94603D46007C4223D78870 /* FoodLibrary.swift in Sources */,
 				C1240123337867B912EFBF46 /* HealthKitManager.swift in Sources */,
+				15EA2AFEF483DA2C9297CD89 /* LiveActivityManager.swift in Sources */,
 				7815140BDA283C79B5BB4344 /* MascotView.swift in Sources */,
 				8DCA8BB57DB091A8791E729B /* NotificationManager.swift in Sources */,
 				7388C86C97409270B288797D /* NutritionScreen.swift in Sources */,
@@ -310,15 +392,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9295ECB49DB2DD80927A553B /* AbsActivityAttributes.swift in Sources */,
 				4BC508F53567063E6FB8C64F /* AbsCountdownWidget.swift in Sources */,
 				5A102F6B7FB6D58302B98662 /* AbsCountdownWidgetBundle.swift in Sources */,
 				6AE9354FABBC23BAA57A4619 /* AbsEstimator.swift in Sources */,
+				A4E716EFE5B1CDCBF55312CA /* AbsLiveActivityWidget.swift in Sources */,
 				13DE4EE452661062EC18468B /* ActivityRingsView.swift in Sources */,
 				AF66D67778A54EC956BFBB7E /* CountdownStore.swift in Sources */,
 				9F4AF427DCD48203A7550F26 /* NutritionStore.swift in Sources */,
 				E15A102D1E35A73CA52733E3 /* ProgressStore.swift in Sources */,
 				19531997B492EA6DA171A9ED /* Quotes.swift in Sources */,
 				AE56A088B8DBFE2CAE0D2E88 /* RingData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06C64D33E7C9DF3C93C693D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3823563E5E74D03F208031 /* AbsActivityAttributes.swift in Sources */,
+				32034A2CEE41DDF484DC5D08 /* AbsCountdownWatchApp.swift in Sources */,
+				33FB04DD7C9485C2ED05BA49 /* AbsEstimator.swift in Sources */,
+				063E144F006F2B276B42AB91 /* ActivityRingsView.swift in Sources */,
+				526D9ED74C301E6E3DC6EDF4 /* CountdownStore.swift in Sources */,
+				5490AA07F2B51ADB8F75D59F /* NutritionStore.swift in Sources */,
+				F1BFBE7256278048EEC358C3 /* Quotes.swift in Sources */,
+				658A132FE69510F93F40B11F /* RingData.swift in Sources */,
+				7ACBE68AE3884315931D4F42 /* WatchContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,9 +430,30 @@
 			target = 4E72022FB9BCD37A452806F4 /* AbsCountdownWidget */;
 			targetProxy = 126478F0EF62E8CEB67CF242 /* PBXContainerItemProxy */;
 		};
+		843EC6A2562524FA7AE42BBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CA51C6D149A4AB34934CD45 /* AbsCountdownWatch */;
+			targetProxy = A7DE34B78D60F85B131B3416 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2B05A09B4368B5C3CD3514F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/Watch/AbsCountdownWatch.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
 		2B06DB9E566DF05E1B7061E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,7 +534,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -529,16 +649,40 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
+		A6FE2A6927BD8F4B785E18A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/Watch/AbsCountdownWatch.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakul.abscountdown.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		13AD7C429BCBA32E6830B1C7 /* Build configuration list for PBXNativeTarget "AbsCountdownWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B05A09B4368B5C3CD3514F8 /* Debug */,
+				A6FE2A6927BD8F4B785E18A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		4874483121AA93AA873C7D71 /* Build configuration list for PBXNativeTarget "AbsCountdownWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

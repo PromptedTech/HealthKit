@@ -52,6 +52,22 @@ final class EvaluationEngine {
             CountdownStore.lastSettledDate = today
         }
 
+        // Update the Dynamic Island / Lock Screen Live Activity with the latest ring values.
+        // End it (with a celebration linger) when both rings close; otherwise start/update.
+        if todayRing.bothClosed {
+            LiveActivityManager.shared.end(
+                ring: todayRing,
+                count: CountdownStore.currentCount,
+                streak: CountdownStore.currentStreak
+            )
+        } else {
+            LiveActivityManager.shared.startOrUpdate(
+                ring: todayRing,
+                count: CountdownStore.currentCount,
+                streak: CountdownStore.currentStreak
+            )
+        }
+
         // Schedule / cancel the 7 PM "rings still open" nudge based on today's status.
         NotificationManager.shared.syncReminder(ringsClosed: todayRing.bothClosed)
 
