@@ -3,9 +3,15 @@ import WidgetKit
 
 /// Outcome of a single calendar day, used by the 7-day history strip.
 enum DayStatus {
-    case good   // both rings closed
-    case bad    // missed / penalized
-    case none   // no Watch data
+    case good    // both rings closed
+    case bad     // missed / penalized
+    case frozen  // streak freeze absorbed the miss
+    case none    // no Watch data
+}
+
+/// What to write into dayHistory for a settled day.
+enum DayOutcome {
+    case good, bad, frozen
 }
 
 /// Shared data layer backed by the App Group so the app and the widget read/write
@@ -48,6 +54,9 @@ enum CountdownStore {
         static let customGoalsEnabled = "customGoalsEnabled"
         static let customMoveGoal = "customMoveGoal"
         static let customExerciseGoal = "customExerciseGoal"
+        // Streak freezes
+        static let streakFreezes = "streakFreezes"
+        static let freezeHistory = "freezeHistory"
     }
 
     /// Stable day key in the device's local calendar.
@@ -170,9 +179,14 @@ enum CountdownStore {
     }
 
     /// Record a single day's outcome (idempotent per day key).
-    static func recordDay(_ date: Date, good: Bool) {
+    /// Stored as: 1 = good, -1 = bad, 0 = frozen (nil key = no data).
+    static func recordDay(_ date: Date, outcome: DayOutcome) {
         var history = dayHistory
-        history[dayKey(date)] = good ? 1 : -1
+        switch outcome {
+        case .good:   history[dayKey(date)] = 1
+        case .bad:    history[dayKey(date)] = -1
+        case .frozen: history[dayKey(date)] = 0
+        }
         dayHistory = history
     }
 
@@ -183,8 +197,16 @@ enum CountdownStore {
         let history = dayHistory
         return (0..<days).reversed().map { offset in
             let date = calendar.date(byAdding: .day, value: -offset, to: today)!
-            let raw = history[dayKey(date)]
-            let status: DayStatus = raw == 1 ? .good : (raw == -1 ? .bad : .none)
+            let status: DayStatus
+            if let raw = history[dayKey(date)] {
+                switch raw {
+                case  1:  status = .good
+                case -1:  status = .bad
+                default:  status = .frozen
+                }
+            } else {
+                status = .none
+            }
             return (date, status)
         }
     }
@@ -269,11 +291,44 @@ enum CountdownStore {
 
     // MARK: - Mutators
 
+    // MARK: - Streak freezes
+
+    /// Available freeze tokens (capped at 3). Earned automatically every 7 consecutive good days.
+    static var streakFreezes: Int {
+        get { defaults.integer(forKey: Keys.streakFreezes) }
+        set { defaults.set(max(0, min(3, newValue)), forKey: Keys.streakFreezes) }
+    }
+
+    static var freezeHistory: [Date] {
+        get {
+            (defaults.array(forKey: Keys.freezeHistory) as? [Double] ?? []).map { Date(timeIntervalSince1970: $0) }
+        }
+        set { defaults.set(newValue.map { $0.timeIntervalSince1970 }, forKey: Keys.freezeHistory) }
+    }
+
+    /// Consume one freeze to protect an otherwise-missed day.
+    /// Returns true when a freeze was available and consumed.
+    @discardableResult
+    static func tryConsumeFreeze(for date: Date) -> Bool {
+        guard currentStreak > 0, streakFreezes > 0 else { return false }
+        streakFreezes -= 1
+        var h = freezeHistory
+        h.append(date)
+        freezeHistory = h
+        return true
+    }
+
+    // MARK: - Mutators
+
     static func applyGoodDay() {
         currentCount = max(0, currentCount - 1)
         currentStreak += 1
         bestStreak = max(bestStreak, currentStreak)
         totalGoodDays += 1
+        // Award one freeze every 7-day milestone, up to a cap of 3.
+        if currentStreak % 7 == 0 && streakFreezes < 3 {
+            streakFreezes += 1
+        }
     }
 
     static func applyBadDay() {
@@ -307,6 +362,8 @@ enum CountdownStore {
         totalBadDays = 0
         dayHistory = [:]
         ringHistory = [:]
+        streakFreezes = 0
+        freezeHistory = []
         let today = Calendar.current.startOfDay(for: Date())
         lastSettledDate = Calendar.current.date(byAdding: .day, value: -1, to: today)!
         reloadWidgets()

@@ -24,9 +24,8 @@ struct AbsCountdownApp: App {
         .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
             case .active:
-                // Belt-and-suspenders: always reconcile whenever the app comes forward.
-                // EvaluationEngine.runCatchUp() will start/update/end the Live Activity.
                 Task { await EvaluationEngine.shared.runCatchUp() }
+                GameCenterManager.shared.authenticate()
             case .background:
                 Self.scheduleBackgroundTask()
             default:

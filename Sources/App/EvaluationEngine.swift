@@ -3,7 +3,7 @@ import WidgetKit
 
 /// Settles each calendar day's outcome:
 ///   - both rings closed  -> good day (-1)
-///   - otherwise          -> bad day (+1)
+///   - otherwise          -> bad day (+1) unless a streak freeze absorbs it
 ///
 /// Completed days (before today) are settled in a catch-up loop, so the counter
 /// self-corrects even if the app/background task did not run for several days.
@@ -22,6 +22,8 @@ final class EvaluationEngine {
         let today = calendar.startOfDay(for: Date())
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
 
+        var usedFreeze = false
+
         // Settle every fully-completed day we haven't settled yet.
         var day = calendar.date(byAdding: .day, value: 1, to: CountdownStore.lastSettledDate)!
         while day <= yesterday {
@@ -29,10 +31,16 @@ final class EvaluationEngine {
             CountdownStore.recordRing(day, ring)
             if ring.bothClosed {
                 CountdownStore.applyGoodDay()
-                CountdownStore.recordDay(day, good: true)
+                CountdownStore.recordDay(day, outcome: .good)
             } else {
-                CountdownStore.applyBadDay()
-                CountdownStore.recordDay(day, good: false)
+                let froze = CountdownStore.tryConsumeFreeze(for: day)
+                if froze {
+                    usedFreeze = true
+                    CountdownStore.recordDay(day, outcome: .frozen)
+                } else {
+                    CountdownStore.applyBadDay()
+                    CountdownStore.recordDay(day, outcome: .bad)
+                }
             }
             CountdownStore.lastSettledDate = day
             day = calendar.date(byAdding: .day, value: 1, to: day)!
@@ -44,16 +52,26 @@ final class EvaluationEngine {
         CountdownStore.recordRing(Date(), todayRing)
 
         // Give instant credit the moment both rings close today.
-        // If rings are still open, leave lastSettledDate untouched — tomorrow's
-        // catch-up loop will penalize this day when it becomes "yesterday".
         if CountdownStore.lastSettledDate < today && todayRing.bothClosed {
             CountdownStore.applyGoodDay()
-            CountdownStore.recordDay(today, good: true)
+            CountdownStore.recordDay(today, outcome: .good)
             CountdownStore.lastSettledDate = today
         }
 
+        // Check and enqueue newly unlocked achievements.
+        let fresh = AchievementStore.evaluate(
+            streak: CountdownStore.currentStreak,
+            totalGoodDays: CountdownStore.totalGoodDays,
+            progress: CountdownStore.progress,
+            currentCount: CountdownStore.currentCount,
+            usedFreeze: usedFreeze
+        )
+        if !fresh.isEmpty {
+            AchievementStore.enqueuePending(fresh)
+            GameCenterManager.shared.report()
+        }
+
         // Update the Dynamic Island / Lock Screen Live Activity with the latest ring values.
-        // End it (with a celebration linger) when both rings close; otherwise start/update.
         if todayRing.bothClosed {
             LiveActivityManager.shared.end(
                 ring: todayRing,
@@ -83,7 +101,6 @@ final class EvaluationEngine {
         )
 
         // Refresh the cached Abs ETA so the chip on CountdownScreen stays current.
-        // This is a best-effort read — we don't block on it if HealthKit is slow.
         Task {
             let weightSeries = await health.bodyMassSeries(days: 90)
             let fatSeries    = await health.bodyFatSeries(days: 90)

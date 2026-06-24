@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Root: two tabs — the earned countdown and the nutrition page.
+/// Root: three tabs — earned countdown, nutrition, and progress.
 struct ContentView: View {
     @State private var selectedTab = 0
 
@@ -33,13 +33,18 @@ struct CountdownScreen: View {
     @State private var etaDate: Date? = ProgressStore.cachedETADate
     @State private var etaWeeks: Double = ProgressStore.cachedETAWeeks
     @State private var showSettings = false
+    @State private var showAchievements = false
+    @State private var showGameCenter = false
+    @State private var shareItem: ShareableImage? = nil
     @State private var hasCelebrated = false
     @State private var pulse = false
     @State private var historyAppeared = false
+    @State private var toastQueue: [AchievementKind] = []
+    @State private var showToast = false
 
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack(alignment: .top) {
                 Color.black.ignoresSafeArea()
 
                 ScrollView {
@@ -62,11 +67,23 @@ struct CountdownScreen: View {
                 if model.count == 0 && hasCelebrated {
                     ConfettiView()
                         .transition(.opacity)
+                        .ignoresSafeArea()
+                }
+
+                // Achievement toast
+                if showToast, let kind = toastQueue.first {
+                    AchievementToast(kind: kind)
+                        .padding(.top, 12)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .zIndex(10)
                 }
             }
             .navigationTitle("Abs Countdown")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    shareButton
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showSettings = true } label: {
                         Image(systemName: "gearshape")
@@ -78,20 +95,85 @@ struct CountdownScreen: View {
                 SettingsView(model: model)
                     .onDisappear { nutrition.refresh() }
             }
+            .sheet(isPresented: $showAchievements) {
+                AchievementsSheet(unlocked: model.unlockedAchievements)
+            }
+            .sheet(isPresented: $showGameCenter) {
+                GameCenterView()
+            }
             .task { await model.requestAuthAndEvaluate() }
             .refreshable { await model.evaluateNow() }
             .onChange(of: model.count) { _, newValue in
                 hasCelebrated = (newValue == 0)
+                refreshShareItem()
+            }
+            .onChange(of: model.pendingAchievements) { _, newValue in
+                guard !newValue.isEmpty else { return }
+                toastQueue = newValue
+                model.pendingAchievements = []
+                showNextToast()
+            }
+            .onChange(of: model.isEvaluating) { _, evaluating in
+                if !evaluating { refreshShareItem() }
             }
             .onAppear {
                 hasCelebrated = (model.count == 0)
                 nutrition.refresh()
+                etaState = ProgressStore.cachedETAState
+                etaDate  = ProgressStore.cachedETADate
+                etaWeeks = ProgressStore.cachedETAWeeks
+                refreshShareItem()
             }
         }
         .preferredColorScheme(.dark)
     }
 
-    // MARK: - Nutrition averages strip (top of app)
+    // MARK: - Share button
+
+    /// Pre-render the progress card whenever key stats change.
+    private func refreshShareItem() {
+        guard let img = ShareCardView.render(
+            count: model.count,
+            streak: model.currentStreak,
+            progress: model.progress
+        ) else { return }
+        shareItem = ShareableImage(uiImage: img)
+    }
+
+    @ViewBuilder
+    private var shareButton: some View {
+        if let item = shareItem {
+            ShareLink(
+                item: item,
+                preview: SharePreview(
+                    "My AbsCountdown Progress",
+                    image: Image(uiImage: item.uiImage)
+                )
+            ) {
+                Image(systemName: "square.and.arrow.up")
+            }
+            .tint(.white)
+        } else {
+            Image(systemName: "square.and.arrow.up")
+                .foregroundStyle(.white.opacity(0.3))
+        }
+    }
+
+    // MARK: - Toast sequencing
+
+    private func showNextToast() {
+        guard !toastQueue.isEmpty else { return }
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) { showToast = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.4) {
+            withAnimation(.easeOut(duration: 0.3)) { showToast = false }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                toastQueue.removeFirst()
+                if !toastQueue.isEmpty { showNextToast() }
+            }
+        }
+    }
+
+    // MARK: - Nutrition averages strip
 
     private var nutritionAveragesStrip: some View {
         Button { selectedTab = 1 } label: {
@@ -131,7 +213,7 @@ struct CountdownScreen: View {
         .buttonStyle(PressableStyle())
     }
 
-    // MARK: - Abs ETA chip (reads cached value — no HealthKit query needed here)
+    // MARK: - Abs ETA chip
 
     private var absETAChip: some View {
         Button { selectedTab = 2 } label: {
@@ -248,37 +330,32 @@ struct CountdownScreen: View {
 
     private var heroColor: Color {
         switch model.count {
-        case 0: return .mint
-        case 1...6: return .green
-        case 7...14: return .orange
-        case 15...29: return .yellow
-        default: return Color(red: 0.55, green: 0.82, blue: 1.0) // icy blue-white
+        case 0:        return .mint
+        case 1...6:    return .green
+        case 7...14:   return .orange
+        case 15...29:  return .yellow
+        default:       return Color(red: 0.55, green: 0.82, blue: 1.0)
         }
     }
 
     private var countdownHero: some View {
         ZStack {
-            // Card tinted gradient background
             RoundedRectangle(cornerRadius: 28)
                 .fill(
                     LinearGradient(
                         colors: [heroColor.opacity(0.18), Color(white: 0.07)],
-                        startPoint: .top,
-                        endPoint: .bottom
+                        startPoint: .top, endPoint: .bottom
                     )
                 )
 
-            // Soft radial glow behind the number
             RadialGradient(
                 colors: [heroColor.opacity(0.28), .clear],
                 center: .init(x: 0.5, y: 0.35),
-                startRadius: 0,
-                endRadius: 160
+                startRadius: 0, endRadius: 160
             )
             .clipShape(RoundedRectangle(cornerRadius: 28))
 
             VStack(spacing: 0) {
-                // Mascot + big number side by side
                 HStack(alignment: .bottom, spacing: 10) {
                     MascotView(ringsClosed: model.todayOnTrack, size: 90)
 
@@ -286,7 +363,7 @@ struct CountdownScreen: View {
                         Text("\(model.count)")
                             .font(.system(size: 88, weight: .heavy, design: .rounded))
                             .foregroundStyle(heroColor)
-                            .shadow(color: heroColor.opacity(0.55), radius: 24, x: 0, y: 0)
+                            .shadow(color: heroColor.opacity(0.55), radius: 24)
                             .contentTransition(.numericText())
                             .animation(.snappy, value: model.count)
                             .scaleEffect(model.count == 0 && pulse ? 1.05 : 1.0)
@@ -305,7 +382,6 @@ struct CountdownScreen: View {
                 }
                 .padding(.horizontal, 4)
 
-                // Motivational tagline
                 Text(model.todayOnTrack ? "You're being consistent. Keep it up." : "Stay consistent — earn every single day.")
                     .font(.footnote)
                     .foregroundStyle(.white.opacity(0.55))
@@ -313,15 +389,27 @@ struct CountdownScreen: View {
                     .padding(.top, 10)
                     .padding(.horizontal, 16)
 
-                // Streak chip
+                // Streak chip with freeze snowflakes
                 if model.currentStreak > 0 {
-                    HStack(spacing: 5) {
-                        Image(systemName: "flame.fill").foregroundStyle(.orange)
-                        Text("\(model.currentStreak)-day streak")
-                            .fontWeight(.semibold)
+                    HStack(spacing: 8) {
+                        HStack(spacing: 5) {
+                            Image(systemName: "flame.fill").foregroundStyle(.orange)
+                            Text("\(model.currentStreak)-day streak")
+                                .fontWeight(.semibold)
+                        }
+                        .font(.caption)
+                        .foregroundStyle(.white)
+
+                        if model.streakFreezes > 0 {
+                            HStack(spacing: 3) {
+                                ForEach(0..<model.streakFreezes, id: \.self) { _ in
+                                    Image(systemName: "snowflake")
+                                        .font(.system(size: 10, weight: .bold))
+                                        .foregroundStyle(.cyan)
+                                }
+                            }
+                        }
                     }
-                    .font(.caption)
-                    .foregroundStyle(.white)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 6)
                     .background(
@@ -329,6 +417,22 @@ struct CountdownScreen: View {
                             .fill(.orange.opacity(0.18))
                             .overlay(Capsule().strokeBorder(.orange.opacity(0.35), lineWidth: 1))
                     )
+                    .padding(.top, 14)
+                } else if model.streakFreezes > 0 {
+                    HStack(spacing: 4) {
+                        ForEach(0..<model.streakFreezes, id: \.self) { _ in
+                            Image(systemName: "snowflake")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundStyle(.cyan)
+                        }
+                        Text("freeze\(model.streakFreezes == 1 ? "" : "s") saved")
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.cyan.opacity(0.8))
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 5)
+                    .background(Capsule().fill(.cyan.opacity(0.1))
+                        .overlay(Capsule().strokeBorder(.cyan.opacity(0.3), lineWidth: 1)))
                     .padding(.top, 14)
                 }
 
@@ -373,7 +477,7 @@ struct CountdownScreen: View {
         .frame(maxWidth: .infinity)
     }
 
-    // MARK: - Activity card (Fitness style)
+    // MARK: - Activity card
 
     private var activityCard: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -470,6 +574,14 @@ struct CountdownScreen: View {
                 }
             }
             .onAppear { historyAppeared = true }
+
+            // Legend when a freeze was used this week
+            if model.history.contains(where: { $0.status == .frozen }) {
+                HStack(spacing: 5) {
+                    Image(systemName: "snowflake").font(.caption2).foregroundStyle(.cyan)
+                    Text("Streak freeze used").font(.caption2).foregroundStyle(.white.opacity(0.45))
+                }
+            }
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -478,23 +590,25 @@ struct CountdownScreen: View {
 
     private func color(for status: DayStatus) -> Color {
         switch status {
-        case .good: return .green
-        case .bad: return .red
-        case .none: return .white.opacity(0.18)
+        case .good:   return .green
+        case .bad:    return .red
+        case .frozen: return .cyan
+        case .none:   return .white.opacity(0.18)
         }
     }
 
     private func icon(for status: DayStatus) -> String {
         switch status {
-        case .good: return "checkmark"
-        case .bad: return "xmark"
-        case .none: return ""
+        case .good:   return "checkmark"
+        case .bad:    return "xmark"
+        case .frozen: return "snowflake"
+        case .none:   return ""
         }
     }
 
     private func weekdayInitial(_ date: Date) -> String {
         let f = DateFormatter()
-        f.dateFormat = "EEEEE"  // single-letter weekday
+        f.dateFormat = "EEEEE"
         return f.string(from: date)
     }
 
@@ -502,9 +616,23 @@ struct CountdownScreen: View {
 
     private var statsCard: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Stats")
-                .font(.headline)
-                .foregroundStyle(.white)
+            HStack {
+                Text("Stats")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                Spacer()
+                Button { showAchievements = true } label: {
+                    HStack(spacing: 5) {
+                        Image(systemName: "rosette")
+                        Text("\(model.unlockedAchievements.count)")
+                        Text("/ \(AchievementKind.allCases.count)")
+                            .foregroundStyle(.white.opacity(0.4))
+                    }
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.yellow)
+                }
+                .buttonStyle(PressableStyle())
+            }
 
             HStack(spacing: 12) {
                 stat("Current", "\(model.currentStreak)", "streak", .orange)
@@ -524,6 +652,24 @@ struct CountdownScreen: View {
                     .foregroundStyle(model.netDaysSaved >= 0 ? .mint : .red)
             }
             .padding(.top, 2)
+
+            Divider().overlay(.white.opacity(0.08))
+
+            Button { showGameCenter = true } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "gamecontroller.fill")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(.mint)
+                    Text("Game Center Leaderboard")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.white.opacity(0.85))
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.white.opacity(0.25))
+                }
+            }
+            .buttonStyle(PressableStyle())
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -576,14 +722,11 @@ struct CountdownScreen: View {
         Button(action: action) {
             HStack(spacing: 14) {
                 ZStack {
-                    Circle()
-                        .fill(tint.opacity(0.15))
-                        .frame(width: 42, height: 42)
+                    Circle().fill(tint.opacity(0.15)).frame(width: 42, height: 42)
                     Image(systemName: icon)
                         .font(.system(size: 16, weight: .bold))
                         .foregroundStyle(tint)
                 }
-
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(.system(.body, design: .rounded).weight(.semibold))
@@ -592,9 +735,7 @@ struct CountdownScreen: View {
                         .font(.caption)
                         .foregroundStyle(.white.opacity(0.45))
                 }
-
                 Spacer(minLength: 0)
-
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.white.opacity(0.2))
@@ -619,6 +760,8 @@ struct CountdownScreen: View {
             .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(.white.opacity(0.07), lineWidth: 1))
     }
 }
+
+// MARK: -
 
 struct PressableStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {

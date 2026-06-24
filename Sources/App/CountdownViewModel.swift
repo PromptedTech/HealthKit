@@ -21,6 +21,11 @@ final class CountdownViewModel: ObservableObject {
     @Published var weeklyMove: Double = CountdownStore.weeklyRingAverage().move
     @Published var weeklyExercise: Double = CountdownStore.weeklyRingAverage().exercise
 
+    // Gamification
+    @Published var streakFreezes: Int = CountdownStore.streakFreezes
+    @Published var unlockedAchievements: Set<AchievementKind> = AchievementStore.unlocked
+    @Published var pendingAchievements: [AchievementKind] = []
+
     var progress: Double { CountdownStore.progress }
     var todayOnTrack: Bool { ring.bothClosed }
     var netDaysSaved: Int { CountdownStore.netDaysSaved }
@@ -39,6 +44,14 @@ final class CountdownViewModel: ObservableObject {
         let weekly = CountdownStore.weeklyRingAverage()
         weeklyMove = weekly.move
         weeklyExercise = weekly.exercise
+        streakFreezes = CountdownStore.streakFreezes
+        unlockedAchievements = AchievementStore.unlocked
+
+        // Surface any achievements that were queued during a background evaluation.
+        let pending = AchievementStore.dequeuePending()
+        if !pending.isEmpty {
+            pendingAchievements = pending
+        }
     }
 
     func requestAuthAndEvaluate() async {
