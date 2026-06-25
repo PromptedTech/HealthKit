@@ -17,6 +17,10 @@ struct ContentView: View {
             ProgressScreen()
                 .tabItem { Label("Progress", systemImage: "chart.line.uptrend.xyaxis") }
                 .tag(2)
+
+            WorkoutScreen()
+                .tabItem { Label("Workout", systemImage: "dumbbell.fill") }
+                .tag(3)
         }
         .tint(.mint)
         .preferredColorScheme(.dark)

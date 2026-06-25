@@ -17,11 +17,16 @@ final class HealthKitManager {
         let readTypes: Set<HKObjectType> = [
             HKObjectType.activitySummaryType(),
             HKObjectType.quantityType(forIdentifier: .bodyMass)!,
-            HKObjectType.quantityType(forIdentifier: .bodyFatPercentage)!
+            HKObjectType.quantityType(forIdentifier: .bodyFatPercentage)!,
+            HKObjectType.workoutType()
         ]
         let shareTypes: Set<HKSampleType> = [
             HKObjectType.quantityType(forIdentifier: .bodyMass)!,
-            HKObjectType.quantityType(forIdentifier: .bodyFatPercentage)!
+            HKObjectType.quantityType(forIdentifier: .bodyFatPercentage)!,
+            HKObjectType.workoutType(),
+            HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
+            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKObjectType.quantityType(forIdentifier: .distanceCycling)!
         ]
         do {
             try await store.requestAuthorization(toShare: shareTypes, read: readTypes)
@@ -121,6 +126,57 @@ final class HealthKitManager {
                 continuation.resume(returning: sample.quantity.doubleValue(for: unit))
             }
             store.execute(query)
+        }
+    }
+
+    // MARK: - Workout logging
+
+    func saveWorkout(
+        activityType: HKWorkoutActivityType,
+        start: Date,
+        end: Date,
+        totalEnergyBurned: Double?,
+        totalDistance: Double?
+    ) async {
+        let config = HKWorkoutConfiguration()
+        config.activityType = activityType
+        let builder = HKWorkoutBuilder(healthStore: store, configuration: config, device: .local())
+        do {
+            try await builder.beginCollection(at: start)
+
+            var samples: [HKSample] = []
+            if let kcal = totalEnergyBurned,
+               let type = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+                samples.append(HKQuantitySample(
+                    type: type,
+                    quantity: HKQuantity(unit: .kilocalorie(), doubleValue: kcal),
+                    start: start, end: end
+                ))
+            }
+            if let km = totalDistance {
+                let distID: HKQuantityTypeIdentifier = activityType == .cycling
+                    ? .distanceCycling : .distanceWalkingRunning
+                if let type = HKQuantityType.quantityType(forIdentifier: distID) {
+                    samples.append(HKQuantitySample(
+                        type: type,
+                        quantity: HKQuantity(unit: .meter(), doubleValue: km * 1000),
+                        start: start, end: end
+                    ))
+                }
+            }
+            if !samples.isEmpty {
+                try await withCheckedThrowingContinuation { (cont: CheckedContinuation<Void, Error>) in
+                    builder.add(samples) { _, error in
+                        if let error { cont.resume(throwing: error) }
+                        else { cont.resume() }
+                    }
+                }
+            }
+
+            try await builder.endCollection(at: end)
+            _ = try await builder.finishWorkout()
+        } catch {
+            // silent failure — workout still saved locally
         }
     }
 

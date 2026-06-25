@@ -40,7 +40,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>AbsCountdown reads your Apple Watch activity rings, weight, and body fat to track your progress toward abs.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>AbsCountdown saves your weight and body-fat entries back to the Health app so your data stays in one place.</string>
+	<string>AbsCountdown saves your weight, body-fat, and workout data to the Health app so everything stays in one place.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>AbsCountdown uses the camera to capture progress photos stored privately on your device.</string>
 	<key>NSFaceIDUsageDescription</key>
